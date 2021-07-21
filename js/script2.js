@@ -236,14 +236,14 @@ window.addEventListener('DOMContentLoaded', () => {
                 object[key] = value;
             });
 
-            fetch('server1.php', {
+            fetch('server.php', {
                 method: "POST",
                 headers: {
                     'Content-type': 'application/json'
                 },
                 body: JSON.stringify(object)
             })
-            .then(data => data.text())
+            .then(data => data.text()) // преобразовать ответ от сервера
             .then(data => {
                 console.log(data);
                 showThanksModal(message.success);
@@ -279,6 +279,10 @@ window.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }, 4000)
     }
+
+    fetch('http://localhost:3000/menu')
+        .then(data => data.json())
+        .then(res => console.log(res));
 
     // fetch('https://jsonplaceholder.typicode.com/posts', {
     //     method: "POST",
